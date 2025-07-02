@@ -1,0 +1,1 @@
+# sonos-era100-stand
