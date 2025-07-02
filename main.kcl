@@ -1,0 +1,25 @@
+baseHeight = 5
+baseDiameter = 150
+slotWidth = 20
+radius001 = baseDiameter / 2
+sketch001 = startSketchOn(XY)
+profile001 = circle(sketch001, center = [0, 0], radius = radius001)
+extrude001 = extrude(profile001, length = baseHeight)
+baseTopPlane = offsetPlane(XY, offset = baseHeight)
+sketch002 = startSketchOn(extrude001, face = END)
+profile002 = circle(baseTopPlane, center = [0, 0], radius = 0.125in)
+profile003 = startProfile(baseTopPlane, at = [0, -75.11])
+  |> xLine(length = slotWidth / 2)
+  |> yLine(length = baseDiameter / 2 / 3)
+  |> arc(
+       interiorAbsolute = [0, -baseDiameter / 2 / 3],
+       endAbsolute = [
+         -slotWidth / 2,
+         -baseDiameter / 2 / 3 * 2
+       ],
+     )
+  |> yLine(length = -baseDiameter / 2 / 3)
+  |> line(endAbsolute = [profileStartX(%), profileStartY(%)])
+  |> close()
+extrude002 = extrude([profile002, profile003], length = -baseHeight)
+solid001 = subtract(extrude001, tools = extrude002)
