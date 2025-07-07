@@ -1,2 +1,7 @@
 import "base.kcl" as base
 import "bracket.kcl" as bracket1
+import "foot.kcl" as foot
+bracket1
+  |> translate(x = 60, y = 0, z = 0)
+foot
+  |> translate(x = 91, y = 0, z = -19)
