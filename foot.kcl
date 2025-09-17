@@ -1,0 +1,10 @@
+footWidth = 10
+sketch001 = startSketchOn(XZ)
+profile001 = startProfile(sketch001, at = [0, 0])
+  |> angledLine(angle = 120, endAbsoluteY = 38.08)
+  |> angledLine(angle = 30, length = footWidth)
+  |> line(endAbsolute = [12.05, 0])
+  |> line(endAbsolute = [profileStartX(%), profileStartY(%)])
+  |> close()
+extrude001 = extrude(profile001, length = footWidth, symmetric = true)
+  |> appearance(%, color = "#7a5757")

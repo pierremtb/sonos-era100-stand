@@ -1,0 +1,17 @@
+bracketWidth = 10
+bracketAngle = 30
+bracketThickness = 5
+bracketLength = 20
+sketch001 = startSketchOn(XZ)
+
+profile001 = startProfile(sketch001, at = [0, 0])
+  |> xLine(length = bracketLength, tag = $seg02)
+  |> angledLine(angle = -(90 - bracketAngle), length = bracketLength, tag = $seg01)
+  |> angledLine(angle = -(180 - bracketAngle), length = bracketThickness)
+  |> angledLine(angle = 90 + bracketAngle, length = 17.05, tag = $seg04)
+  |> xLine(length = -17.14, tag = $seg03)
+  |> line(endAbsolute = [profileStartX(%), profileStartY(%)])
+  |> close()
+extrude001 = extrude(profile001, length = bracketWidth, symmetric = true)
+  |> fillet(radius = bracketThickness, tags = [getCommonEdge(faces = [seg01, seg02])])
+  |> fillet(radius = bracketThickness / 2, tags = [getCommonEdge(faces = [seg03, seg04])])
