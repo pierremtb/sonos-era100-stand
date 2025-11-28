@@ -1,4 +1,4 @@
-baseHeight = 5
+baseHeight = 8
 baseDiameter = 150
 slotWidth = 20
 radius001 = baseDiameter / 2
@@ -23,4 +23,4 @@ profile003 = startProfile(baseTopPlane, at = [0, -75.11])
   |> close()
 extrude002 = extrude([profile002, profile003], length = -baseHeight)
 solid001 = subtract(extrude001, tools = extrude002)
-  |> appearance(color = "#171717")
+  |> appearance(color = "#ad0b0b")
